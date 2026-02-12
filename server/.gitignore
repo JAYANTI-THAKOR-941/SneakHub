@@ -1,0 +1,79 @@
+# ------------------------
+# Node.js
+# ------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ------------------------
+# Environment variables
+# ------------------------
+.env
+.env.local
+.env.development
+.env.production
+
+# ------------------------
+# Logs
+# ------------------------
+logs/
+*.log
+
+# ------------------------
+# Runtime data
+# ------------------------
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# ------------------------
+# Coverage / Test
+# ------------------------
+coverage/
+.nyc_output/
+
+# ------------------------
+# Build / Dist
+# ------------------------
+dist/
+build/
+
+# ------------------------
+# Database
+# ------------------------
+data/
+*.sqlite
+*.db
+
+# ------------------------
+# Uploads (if using multer)
+# ------------------------
+uploads/
+temp/
+
+# ------------------------
+# OS files
+# ------------------------
+.DS_Store
+Thumbs.db
+
+# ------------------------
+# IDE / Editor
+# ------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ------------------------
+# Optional: PM2
+# ------------------------
+pm2.log
+
+# ------------------------
+# Optional: Docker
+# ------------------------
+.env.docker
