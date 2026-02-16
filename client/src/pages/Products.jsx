@@ -10,22 +10,18 @@ const Products = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
+      setLoading(true);
       try {
-        // Mock data fallback if API fails or for preview
-        try {
-          let res = await api.get('/product/all');
-          setProducts(res.data);
-        } catch (e) {
-          console.warn("API failed, using mock data", e);
-          setProducts([
-            { _id: '1', name: 'Air Max Pulse', description: 'Comfortable running shoes', price: 149, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
-            { _id: '2', name: 'Jordan Delta 2', description: 'Futuristic design', price: 129, image: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
-            { _id: '3', name: 'Blazer Mid 77', description: 'Vintage basketball style', price: 99, image: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
-            { _id: '4', name: 'Zoom Freak 3', description: 'Giannis Antetokounmpo signature', price: 119, image: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
-          ]);
+        const { data } = await api.get('/product/all');
+        if (Array.isArray(data)) {
+          setProducts(data);
+        } else {
+          console.error("Unexpected data format:", data);
+          setError("Received invalid data from server.");
         }
       } catch (err) {
-        setError("Failed to fetch products.");
+        console.error("Error fetching products:", err);
+        setError("Failed to fetch products from server. Please try again later.");
       } finally {
         setLoading(false);
       }

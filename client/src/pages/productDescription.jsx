@@ -41,25 +41,12 @@ const ProductDescription = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
+      setLoading(true);
       try {
-        try {
-          let res = await api.get(`/product/${id}`);
-          setProduct(res.data);
-        } catch (e) {
-          console.warn("API failed, using mock data", e);
-          // Mock product based on ID
-          setProduct({
-            _id: id,
-            name: 'Air Max Pulse',
-            description: 'A comfortable and stylish sneaker for everyday wear.',
-            longDescription: 'The Air Max Pulse pulls inspiration from the London music scene, bringing an underground touch to the iconic Air Max line. Its textile-wrapped midsole and vacuum-sealed accents keep it looking fresh and clean, while point-loaded Air cushioning—revamped from the incredibly plush Air Max 270—delivers better bounce that helps you push past your limits.',
-            category: 'Running',
-            price: 149,
-            image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-            sizes: [7, 8, 9, 10, 11]
-          });
-        }
+        const { data } = await api.get(`/product/${id}`);
+        setProduct(data);
       } catch (err) {
+        console.error("Error fetching product:", err);
         setError("Failed to fetch product details.");
       } finally {
         setLoading(false);
