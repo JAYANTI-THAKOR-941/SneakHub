@@ -9,7 +9,7 @@ const VerifyOtp = () => {
   const handleVerify = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/user/verifyOtp', { otp });
+      const res = await axios.post('https://sneakhub-ydsl.onrender.com/api/user/verifyOtp', { otp });
       if (res.status === 200) {
         alert(res.data.message);
         navigate('/login');

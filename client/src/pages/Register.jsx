@@ -11,7 +11,7 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/user/register', { name, email, password });
+      const res = await axios.post('https://sneakhub-ydsl.onrender.com/api/user/register', { name, email, password });
       alert(res.data.message);
       if (res.status === 201) {
         navigate('/verifyOtp');
