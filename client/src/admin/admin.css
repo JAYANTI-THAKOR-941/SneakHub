@@ -1,0 +1,10 @@
+img{
+    width: 80px;
+}
+button{
+    border: 0;
+    padding: 10px 24px;
+    border-radius: 5px;
+    background-color: tomato;
+    color: white;
+}
