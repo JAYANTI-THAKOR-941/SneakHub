@@ -11,10 +11,19 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.post('http://localhost:5000/api/user/login', { email, password });
-      // In a real app, you'd store the token here
+
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('user', JSON.stringify(res.data.user));
+
+      // Dispatch custom event for same-tab updates
+      window.dispatchEvent(new Event('auth-change'));
+
       alert(res.data.message);
-      if (res.status === 200) {
-        navigate('/admin'); // Redirect to admin/dashboard for now
+
+      if (res.data.user.role === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/');
       }
     } catch (error) {
       console.error(error);
